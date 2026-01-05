@@ -10,6 +10,7 @@ session_string = os.environ["TELEGRAM_SESSION"]
 bot_username = os.environ["BOT_USERNAME"]
 
 async def main():
+    print(f"DEBUG: 从环境变量读取到的 Bot 用户名是: {repr(bot_username)}")
     # 使用 StringSession 初始化，无需再次登录
     async with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
         print(f"正在连接 Telegram...")
