@@ -1,0 +1,37 @@
+name: Telegram Auto Checkin
+
+on:
+  push:
+    branches: [ main ] # 为了测试，允许 push 触发
+  schedule:
+    # 每天北京时间上午 9:00 运行 (UTC时间 1:00)
+    # 格式: 分 时 日 月 周
+    - cron: '0 1 * * *'
+  workflow_dispatch: # 允许手动点击按钮触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install telethon
+
+      - name: Run Checkin Script
+        env:
+          # 从 Secrets 读取敏感信息
+          API_ID: ${{ secrets.API_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
+          BOT_USERNAME: 'BotUserName' # 这里可以直接写 Bot 用户名，或者也放在 Secret 里
+        run: python checkin.py
