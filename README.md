@@ -2,7 +2,7 @@
 
 本项目基于 GitHub Actions 和 Python Telethon 库，实现 Telegram 机器人的自动化签到。
 
-目前支持以下服务的自动签到：
+目前支持以下服务的自动签到（请先手动私聊bot start一下）：
 1.  **Doubledou Bot** (`dounai.py`)：通过发送 `/checkin` 指令签到。
 2.  **ICMP9 Bot** (`icmp9.py`)：通过点击最新的按钮进行签到。
 
