@@ -27,11 +27,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install telethon
 
-      - name: Run Checkin Script
+      - name: Run icmp9 Checkin Script
         env:
           # 从 Secrets 读取敏感信息
           API_ID: ${{ secrets.API_ID }}
           API_HASH: ${{ secrets.API_HASH }}
           TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
           BOT_USERNAME: ${{ secrets.BOT_USERNAME }}
-        run: python checkin.py
+        run: python icmp9.py
+
+      - name: Run Command Checkin (doubledoubot)
+        env:
+          API_ID: ${{ secrets.API_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
+        run: python dounai.py
